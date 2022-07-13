@@ -1,0 +1,39 @@
+#input_text{
+    height: 100px;
+    width: 600px;
+    border: none;
+}
+
+.btn_div {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.btn_gif {
+    margin-bottom: 10px;
+    width: 400px;
+    height: 45px;
+    border: none;
+    border-radius: 10px;
+    color: black;
+    background-color:azure;
+}
+
+.footer_div {
+    margin-left: 700px;
+    margin-top: 20px;
+}
+
+.footer_btn {
+    color: white;
+    background-color: blue;
+    width: 120px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+.git-container img{
+    display : flex;
+    flex-direction : row;
+}
