@@ -34,6 +34,16 @@
 }
 
 .git-container img{
-    display : flex;
-    flex-direction : row;
+    display : grid;
+    grid-template-columns: auto auto;
+    /* flex-direction : row; */
+}
+
+.git_con {
+    border : 1px solid transparent;
+    height : 300px;
+    width : 450px;
+    display : grid;
+    gap : 10px;
+    grid-template-columns: repeat(4, 1fr);
 }

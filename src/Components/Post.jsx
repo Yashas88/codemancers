@@ -3,26 +3,31 @@ import './post.css';
 import axios from 'axios';
 
 const Post = () => {
-  const [gif, setGif] = useState([]);
-  console.log('gif data', gif);
+  const [gifs, setGifs] = useState([]);
+  const [gif, setGif] = useState('');
 
   const fetchData = async () => {
     const res = await axios.get(
-      'https://api.giphy.com/v1/gifs/search?api_key=eWjPag1jis3sTZkXm5n2UGYWuu0sFbqd&q=hello&limit=25&offset=0&rating=g&lang=en'
+      'https://api.giphy.com/v1/gifs/search?api_key=eWjPag1jis3sTZkXm5n2UGYWuu0sFbqd&q=hello'
     );
     // console.log("res", res);
-
     // console.log("res data", res.data.data)
+    setGifs(res.data.data);
+  };
 
-    setGif(res.data.data);
+  const handleSelect = (key) => {
+    console.log('select', key);
+
+    console.log(key.images.preview_gif.url);
+    setGif(key.images.preview_gif.url);
   };
 
   return (
     <div>
       <div>
         <img
+          alt='gif_image'
           src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv8NfrKHYJHjf3FxKhrD9OEO17wd6YXGzfs_j3lDUFz7JsGQZR09IyyD9EVo6Z3jxH3MQ&usqp=CAU'
-          alt='user_img'
         ></img>
         <input
           type='text'
@@ -38,6 +43,15 @@ const Post = () => {
           GIF
         </button>
         <button className='btn_gif'>Tag Event</button>
+        {gif ? (
+          <>
+            <img
+              src={gif}
+              alt='gif_image'
+              style={{ width: '100px', height: '100px', cursor: 'pointer' }}
+            />
+          </>
+        ) : null}
       </div>
 
       <div className='footer_div'>
@@ -48,14 +62,20 @@ const Post = () => {
         <button className='footer_btn'>Post</button>
       </div>
 
-      {gif.map((item) => (
-        <div className='git-container' key={item.id}>
-           <img
-            src={item.images.preview_gif.url}
-            style={{ width: '100px', height: '100px' }}
-            alt='user_img' />        
-        </div>
-      ))}
+      <div className='git_con'>
+        {gifs.map((item, index) => (
+          <div className='git-conatiner' key={item.id}>
+            <img
+              src={item.images.preview_gif.url}
+              style={{ width: '100px', height: '100px', cursor: 'pointer' }}
+              alt='gif_image'
+              onClick={(key) => {
+                handleSelect(item);
+              }}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
